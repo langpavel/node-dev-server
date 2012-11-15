@@ -1,0 +1,19 @@
+{
+  "name": "dev-server",
+  "version": "0.0.0",
+  "preferGlobal": true,
+  "description": "dev-server serve static files and directories for you.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "bin": "./bin/dev-server",
+  "repository": "git://github.com/langpavel/node-dev-server.git",
+  "author": "Pavel Lang <langpavel@phpskelet.org>",
+  "license": "BSD",
+  "dependencies": {
+    "better-inspect": "~0.0.1",
+    "connect": "~2.6.2",
+    "express": "~3.0.2"
+  }
+}
