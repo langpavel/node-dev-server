@@ -1,6 +1,6 @@
 {
   "name": "dev-server",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "preferGlobal": true,
   "description": "dev-server serve static files and directories for you.",
   "main": "index.js",
@@ -14,6 +14,7 @@
   "dependencies": {
     "better-inspect": "~0.0.1",
     "connect": "~2.6.2",
-    "express": "~3.0.2"
+    "express": "~3.0.2",
+    "growl": "~1.6.1"
   }
 }
