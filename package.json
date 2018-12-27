@@ -10,7 +10,7 @@
   "bin": "./bin/dev-server",
   "repository": "git://github.com/langpavel/node-dev-server.git",
   "author": "Pavel Lang <langpavel@phpskelet.org>",
-  "license": "BSD",
+  "license": "ISC",
   "dependencies": {
     "better-inspect": "~0.0.1",
     "connect": "~2.6.2",
