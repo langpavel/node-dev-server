@@ -25,6 +25,8 @@
   },
   "scripts": {
     "start": "node index.js",
+    "prettier": "prettier",
+    "eslint": "eslint",
     "lint": "eslint index.js lib/**/*.js"
   }
 }
