@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-process.title = 'dev-server';
-console.log('dev-server PID ' + process.pid);
+process.title = "dev-server";
+console.info("dev-server PID " + process.pid);
 
-require('../index.js');
+require("../index.js");

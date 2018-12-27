@@ -14,9 +14,7 @@ app.port = process.env.DEV_SERVER_PORT || 4000;
 app.root = ROOT;
 
 // app.use(express.favicon());
-app.use(
-  morgan(':method :url :status :res[content-length] - :response-time ms'),
-);
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
 
 // get app name
 const name = path.basename(ROOT);
@@ -53,7 +51,7 @@ app.use(
     icons: true,
     directory: name,
     view: 'details',
-  }),
+  })
 );
 
 app.get('/', function(req, res) {
@@ -62,7 +60,7 @@ app.get('/', function(req, res) {
 
 const server = http.createServer(app);
 server.listen(app.port, function() {
-  console.log(`\n[dev-server] listening at http://127.0.0.1:${app.port}`);
+  console.info(`\n[dev-server] listening at http://127.0.0.1:${app.port}`);
   app.notify(`listening at http://127.0.0.1:${app.port}`, 'info');
 });
 
