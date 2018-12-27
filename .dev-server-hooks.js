@@ -1,9 +1,7 @@
-
 var fs = require('fs');
 var exec = require('child_process').exec;
 
 exports.hook = function(app) {
-
   var notify = app.notify;
 
   app.watch(/\.js$/i, function(ev) {
@@ -18,8 +16,7 @@ exports.hook = function(app) {
         console.error(line);
 
         line = line.trim();
-        if (line === '')
-          return;
+        if (line === '') return;
 
         var match = line.match(/:(\d+):\(([^)]*)\)\s*(.*)$/);
         if (match) {
@@ -28,13 +25,12 @@ exports.hook = function(app) {
       });
 
       if (niceoutput.length > 0)
-        return notify(
-            '<b>Lint</b>: ' + ev.path + niceoutput.join(''), 'error');
+        return notify('<b>Lint</b>: ' + ev.path + niceoutput.join(''), 'error');
       else
         return notify(
-            '<b>Lint OK</b>: ' + ev.path + niceoutput.join(''), 'info');
+          '<b>Lint OK</b>: ' + ev.path + niceoutput.join(''),
+          'info',
+        );
     });
-
   });
-
 };

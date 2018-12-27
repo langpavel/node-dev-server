@@ -1,17 +1,20 @@
-node-dev-server
-===============
+# dev-server
 
 Serving static files and directory indexes for you
 
+## Install
 
-Install
--------
 ```
-$ sudo npm install dev-server -g
+$ npm install dev-server -g
 ```
 
-Run
----
+## Run
+
 ```
-$ DEV_SERVER_PORT=4000 DEV_SERVER_ROOT=./ dev-server
+$ =4000 DEV_SERVER_ROOT=. dev-server
 ```
+
+### Environment Variables
+
+- `DEV_SERVER_PORT` — port to listen, default 4000
+- `DEV_SERVER_ROOT` — root directory

@@ -1,35 +1,31 @@
+const http = require('http');
+const fs = require('fs');
+const path = require('path');
+const express = require('express');
+const serveIndex = require('serve-index');
+const serveStatic = require('serve-static');
+const morgan = require('morgan');
 
-if (!process.env.DEV_SERVER_NO_BETTER_INSPECT)
-  require('better-inspect');
+const ROOT = path.resolve(process.env.DEV_SERVER_ROOT || process.cwd());
 
-var express = require('express');
-var http = require('http');
-var fs = require('fs');
-
-
-
-var app = express();
+const app = express();
 
 app.port = process.env.DEV_SERVER_PORT || 4000;
-app.root = process.env.DEV_SERVER_ROOT || process.cwd();
+app.root = ROOT;
 
-
-
-express.mime.default_type = 'text/plain';
-
-
-app.use(express.favicon());
-app.use(express.logger(
-    ':method :url :status :res[content-length] - :response-time ms'));
+// app.use(express.favicon());
+app.use(
+  morgan(':method :url :status :res[content-length] - :response-time ms'),
+);
 
 // get app name
-var name = app.root.match(/([^\/\\]+)$/);
-app.title = app.name = name = name ? name[1] : app.root;
+const name = path.basename(ROOT);
+app.title = app.name = name;
 
 // export for hooks
 app.express = express;
 
-// inject proxy code
+// inject notification code
 require('./lib/notify')(app);
 
 // inject proxy code
@@ -51,27 +47,26 @@ app.use(function(req, res, next) {
 });
 
 // if index.html is found, static middleware will serve it
-app.use(express.static(app.root));
-app.use(express.directory(app.root, {
-  icons: true,
-  sort: 'alphaDirFirst'
-}));
-
+app.use(serveStatic(app.root));
+app.use(
+  serveIndex(app.root, {
+    icons: true,
+    directory: name,
+    view: 'details',
+  }),
+);
 
 app.get('/', function(req, res) {
   res.send('hello world');
 });
 
-
-var server = http.createServer(app);
+const server = http.createServer(app);
 server.listen(app.port, function() {
-  console.log('Server listening at ' + app.port);
-  app.notify('listening at <a href="http://127.0.0.1:' +
-      app.port + '">http://127.0.0.1:' + app.port + '</a>', 'info');
+  console.log(`\n[dev-server] listening at http://127.0.0.1:${app.port}`);
+  app.notify(`listening at http://127.0.0.1:${app.port}`, 'info');
 });
 
-
-var repl = require('repl').start(name + '@' + app.port + '> ');
+const repl = require('repl').start(name + '@' + app.port + '> ');
 
 app.repl = repl;
 
