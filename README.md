@@ -2,6 +2,11 @@
 
 Serving static files and directory indexes for you
 
+## Quick usage
+```
+$ npx dev-server
+```
+
 ## Install
 
 ```
