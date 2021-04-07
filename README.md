@@ -11,7 +11,7 @@ $ npm install dev-server -g
 ## Run
 
 ```
-$ =4000 DEV_SERVER_ROOT=. dev-server
+$ DEV_SERVER_PORT=4000 DEV_SERVER_ROOT=. dev-server
 ```
 
 ### Environment Variables
